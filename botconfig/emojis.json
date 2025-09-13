@@ -1,78 +1,80 @@
 {
   "msg": {
-    "COMMENT": "IF YOU DECIDE TO USE CUSTOM EMOJIS, USE THE NAME AND THE ID IN MSG, EXAMPLE: ⬜ --> <:progressbar_left_filled:818558865268408341>",
+    "COMMENT": "All custom emojis mapped",
 
-    "ERROR" : "<:no:833101993668771842>",
-    "SUCCESS" : "<a:yes:833101995723194437>",
+    "ERROR": "<:icon_cross:1017007412768677940>",
+    "SUCCESS": "<:tick_icons:1017006922903330847>",
 
-    "disabled" : "<:no:833101993668771842>",
-    "enabled" : "<a:yes:833101995723194437>",
+    "disabled": "<:icon_cross:1017007412768677940>",
+    "enabled": "<:tick_icons:1017006922903330847>",
 
     "progress_bar": {
       "leftindicator": "[",
       "rightindicator": "]",
-
       "emptyframe": "⬜",
-      "filledframe": "🟧"
+      "filledframe": "<:icons_wave:1017007610882424853>"
     },
 
-    "playing": "🎶",
-    "pruning": "💬",
-    "equalizer": "🎚",
-    "cleared": "🗑",
-    "leave_on_empty": "🗣️",
-    "time": "⌛",
-    "premium": "💰",
-    "song_by": "💯",
-    "setup": "⚙️",
-    "dj": "🎧",
-    "bot": "🤖",
-    "search": "🔎",
-    "resume": "▶",
-    "pause": "⏸",
-    "lyrics": "📃",
-    "disk": "📀",
-    "ping": "🏓",
+    "playing": "<:zzmusic:1018108388699275344>",
+    "pause": "<:icons_headphones:1024991836261056552>",
+    "resume": "<:zzmusic:1018108388699275344>",
+    "pause_resume": "<:icons_headphones:1024991836261056552>",
+    "stop": "<:icons_error:1024990855032995871>",
 
-    "rewind": "⏪",
-    "forward": "⏩",
-    "pause_resume": "⏯️",
-    "stop": "⏹️",
-    "previous_track": "⏮️",
-    "skip_track": "⏭️",
-    "replay_track": "🔃",
-    "reduce_volume": "🔉",
-    "raise_volume": "🔊",
-    "toggle_mute": "🔇",
-    "repeat_mode": "🔄",
-    "autoplay_mode": "♾",
-    "shuffle": "🔀",
-    "show_queue": "📑",
-    "show_current_track": "🩸"
+    "previous_track": "<:icons_library:1025000692127109140>",
+    "skip_track": "<:music_queue:1016998862570917930>",
+    "replay_track": "<:icons_games:1024992458947440662>",
+    "rewind": "<:icons_list:1017004828884480033>",
+    "forward": "<:icons_wave:1017007610882424853>",
+
+    "reduce_volume": "<:icons_swardx:1018445634744889394>",
+    "raise_volume": "<:icons_wave:1017007610882424853>",
+    "toggle_mute": "<:icons_mod:1024996110621745252>",
+    "repeat_mode": "<:icons_pin:1024992935600734209>",
+    "autoplay_mode": "<:icons_games:1024992458947440662>",
+    "shuffle": "<:icons_linkadd:1024994486222327840>",
+
+    "show_queue": "<:music_queue:1016998862570917930>",
+    "show_current_track": "<:zzmusic:1018108388699275344>",
+
+    "lyrics": "<:books_icons:1024991663304740875>",
+    "disk": "<:icons_library:1025000692127109140>",
+    "ping": "<:icon_ping:1024991050533703800>",
+    "time": "<:icons_clock:1017000138339782717>",
+
+    "pruning": "<:icons_info:1017000138339782717>",
+    "equalizer": "<:settings:1018110187204259901>",
+    "cleared": "<:icons_error:1024990855032995871>",
+    "leave_on_empty": "<:Channel:1017386071765549087>",
+
+    "premium": "<:icons_nitro:1024993002449547315>",
+    "song_by": "<:icons_verified:1024992362742681621>",
+    "setup": "<:Settings:1016998962449891388>",
+    "dj": "<:icons_headphones:1024991836261056552>",
+    "bot": "<:HDF_icon_bot_dev:1017008086407446538>",
+    "search": "<:IconSearch:1017007771947913237>"
   },
+
   "react": {
+    "COMMENT": "Reactions must be IDs only",
 
-    "COMMENT": "IF YOU DECIDE TO USE CUSTOM EMOJIS, USE JUST THE ID IN REACT, EXAMPLE: ⏪ --> 818558865268408341",
+    "ERROR": "1017007412768677940",
+    "SUCCESS": "1017006922903330847",
 
-    "ERROR" : "833101993668771842",
-    "SUCCESS" : "833101995723194437",
-
-
-    "rewind": "⏪",
-    "forward": "⏩",
-    "pause_resume": "⏯️",
-    "stop": "⏹️",
-    "previous_track": "⏮️",
-    "skip_track": "⏭️",
-    "replay_track": "🔃",
-    "reduce_volume": "🔉",
-    "raise_volume": "🔊",
-    "toggle_mute": "🔇",
-    "repeat_mode": "🔄",
-    "autoplay_mode": "♾",
-    "shuffle": "🔀",
-    "show_queue": "📑",
-    "show_current_track": "🩸"
+    "rewind": "1017004828884480033",
+    "forward": "1017007610882424853",
+    "pause_resume": "1024991836261056552",
+    "stop": "1024990855032995871",
+    "previous_track": "1025000692127109140",
+    "skip_track": "1016998862570917930",
+    "replay_track": "1024992458947440662",
+    "reduce_volume": "1018445634744889394",
+    "raise_volume": "1017007610882424853",
+    "toggle_mute": "1024996110621745252",
+    "repeat_mode": "1024992935600734209",
+    "autoplay_mode": "1024992458947440662",
+    "shuffle": "1024994486222327840",
+    "show_queue": "1016998862570917930",
+    "show_current_track": "1018108388699275344"
   }
-
 }
