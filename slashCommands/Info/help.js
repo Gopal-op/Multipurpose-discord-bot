@@ -14,45 +14,43 @@ module.exports = {
   description: "Returns all Commands, or one specific command",
   options: [
     {
-      StringChoices: {
-        name: "category",
-        description: "See the Commands of a Category",
-        required: true,
-        choices: [
-          ["⌨️ Programming", "⌨️ Programming"],
-          ["⚙️ Settings", "⚙️ Settings"],
-          ["⚜️ Custom Queue(s)", "⚜️ Custom Queue(s)"],
-          ["🎤 Voice", "🎤 Voice"],
-          ["🎮 MiniGames", "🎮 MiniGames"],
-          ["🎶 Music", "🎶 Music"],
-          ["🏫 School Commands", "🏫 School Commands"],
-          ["👀 Filter", "👀 Filter"],
-          ["👑 Owner", "👑 Owner"],
-          ["💪 Setup", "💪 Setup"],
-          ["💸 Economy", "💸 Economy"],
-          ["📈 Ranking", "📈 Ranking"],
-          ["🔊 Soundboard", "🔊 Soundboard"],
-          ["🔞 NSFW", "🔞 NSFW"],
-          ["🔰 Info", "🔰 Info"],
-          ["🕹️ Fun", "🕹️ Fun"],
-          ["🚫 Administration", "🚫 Administration"],
-        ]
-      }
+      type: 3, // STRING
+      name: "category",
+      description: "See the Commands of a Category",
+      required: true,
+      choices: [
+        { name: "⌨️ Programming", value: "⌨️ Programming" },
+        { name: "⚙️ Settings", value: "⚙️ Settings" },
+        { name: "⚜️ Custom Queue(s)", value: "⚜️ Custom Queue(s)" },
+        { name: "🎤 Voice", value: "🎤 Voice" },
+        { name: "🎮 MiniGames", value: "🎮 MiniGames" },
+        { name: "🎶 Music", value: "🎶 Music" },
+        { name: "🏫 School Commands", value: "🏫 School Commands" },
+        { name: "👀 Filter", value: "👀 Filter" },
+        { name: "👑 Owner", value: "👑 Owner" },
+        { name: "💪 Setup", value: "💪 Setup" },
+        { name: "💸 Economy", value: "💸 Economy" },
+        { name: "📈 Ranking", value: "📈 Ranking" },
+        { name: "🔊 Soundboard", value: "🔊 Soundboard" },
+        { name: "🔞 NSFW", value: "🔞 NSFW" },
+        { name: "🔰 Info", value: "🔰 Info" },
+        { name: "🕹️ Fun", value: "🕹️ Fun" },
+        { name: "🚫 Administration", value: "🚫 Administration" },
+      ]
     },
     {
-      String: {
-        name: "command",
-        description: "Is there a specific Command you want details from?",
-        required: false
-      }
+      type: 3, // STRING
+      name: "command",
+      description: "Is there a specific Command you want details from?",
+      required: false
     }
   ],
   run: async (client, interaction, cmduser, es, ls, prefix, player, message) => {
-    const { member } = interaction;
-    const { guild } = member;
+    const { member, guild } = interaction;
 
     let CommandStr = interaction.options.getString("command");
     let Category = interaction.options.getString("category");
+
     if (!Category)
       return interaction.reply({
         content: "Please repeat but add a CATEGORY",
@@ -62,7 +60,6 @@ module.exports = {
     Category = Category.replace("_", " ");
     try {
       let allembeds = [];
-
       if (Category) {
         const cat = client.categories.find(c =>
           c.toLowerCase().includes(Category.toLowerCase())
@@ -74,9 +71,10 @@ module.exports = {
             .map(cmd => `\`${cmd.name}\``);
 
           const embed = new EmbedBuilder()
-            .setColor(es.color || "#2F3136")
+            .setColor(es.color || "#2f3136")
             .setThumbnail(client.user.displayAvatarURL())
-            .setTitle(eval(client.la[ls]["cmds"]["info"]["help"]["variable2"]))
+            .setTitle("Help Menu - " + category)
+            .setDescription(items.join(", ") || "No commands found.")
             .setFooter({
               text: handlemsg(client.la[ls].cmds.info.help.nocustom, {
                 prefix: prefix
@@ -84,17 +82,6 @@ module.exports = {
               iconURL: client.user.displayAvatarURL()
             });
 
-          if (category.toLowerCase().includes("custom")) {
-            try {
-              embed.setDescription(
-                eval(client.la[ls]["cmds"]["info"]["help"]["variable3"])
-              );
-            } catch {}
-          } else {
-            embed.setDescription(
-              eval(client.la[ls]["cmds"]["info"]["help"]["variable4"])
-            );
-          }
           allembeds.push(embed);
         }
       }
@@ -102,64 +89,40 @@ module.exports = {
       if (CommandStr) {
         const cmd =
           client.commands.get(CommandStr.toLowerCase()) ||
-          client.commands.get(
-            client.aliases.get(CommandStr.toLowerCase())
-          );
+          client.commands.get(client.aliases.get(CommandStr.toLowerCase()));
+
+        const embed = new EmbedBuilder()
+          .setColor(es.color || "#2f3136")
+          .setThumbnail(client.user.displayAvatarURL());
 
         if (!cmd) {
-          allembeds.push(
-            new EmbedBuilder()
-              .setColor(es.wrongcolor || "#ED4245")
-              .setDescription(
-                handlemsg(client.la[ls].cmds.info.help.noinfo, {
-                  command: CommandStr.toLowerCase()
-                })
-              )
+          embed.setDescription(
+            `No info found for command \`${CommandStr.toLowerCase()}\``
           );
         } else {
-          const embed = new EmbedBuilder()
-            .setColor(es.color || "#2F3136")
-            .setThumbnail(client.user.displayAvatarURL())
-            .setTitle(
-              handlemsg(client.la[ls].cmds.info.help.detail.about, {
-                cmdname: cmd.name
-              })
-            )
-            .addFields(
-              {
-                name: handlemsg(client.la[ls].cmds.info.help.detail.name),
-                value: `\`${cmd.name}\``
-              },
-              {
-                name: handlemsg(client.la[ls].cmds.info.help.detail.desc),
-                value: `\`\`\`${cmd.description || "No description"}\`\`\``
-              },
-              {
-                name: handlemsg(client.la[ls].cmds.info.help.detail.cooldown),
-                value: `\`\`\`${cmd.cooldown || 3} Seconds\`\`\``
-              }
-            );
-
-          if (cmd.aliases?.length) {
+          if (cmd.name)
+            embed.addFields({ name: "Name", value: `\`${cmd.name}\`` });
+          if (cmd.description)
             embed.addFields({
-              name: handlemsg(client.la[ls].cmds.info.help.detail.aliases),
-              value: `\`${cmd.aliases.join("`, `")}\``
+              name: "Description",
+              value: `\`\`\`${cmd.description}\`\`\``
             });
-          }
-
-          if (cmd.usage) {
+          if (cmd.aliases?.length)
             embed.addFields({
-              name: handlemsg(client.la[ls].cmds.info.help.detail.usage),
+              name: "Aliases",
+              value: cmd.aliases.map(a => `\`${a}\``).join(", ")
+            });
+          embed.addFields({
+            name: "Cooldown",
+            value: `\`\`\`${cmd.cooldown || 3} Seconds\`\`\``
+          });
+          if (cmd.usage)
+            embed.addFields({
+              name: "Usage",
               value: `\`\`\`${prefix}${cmd.usage}\`\`\``
             });
-            embed.setFooter({
-              text: handlemsg(client.la[ls].cmds.info.help.detail.syntax),
-              iconURL: client.user.displayAvatarURL()
-            });
-          }
-
-          allembeds.push(embed);
         }
+        allembeds.push(embed);
       }
 
       return interaction.reply({ embeds: allembeds, ephemeral: true });
