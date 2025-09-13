@@ -12,7 +12,7 @@
  * 8  LOAD_the_BOT_Functions
  * 9  Login_to_the_Bot
  * 
- *   BOT CODED BY: TOMato6966 | https://milrato.eu
+ *   BOT CODED BY: GopalPlayz01 | https://gopalservices.vercel.app
  *********************************************************/
 
 
@@ -64,7 +64,7 @@ const client = new Discord.Client({
   ],
   presence: {
     activities: [{ name: `${config.status.text}`.replace("{prefix}", config.prefix), type: config.status.type, url: config.status.url }],
-    status: "online"
+    status: "idle"
   }
 });
 
